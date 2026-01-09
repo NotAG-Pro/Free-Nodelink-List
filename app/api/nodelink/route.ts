@@ -11,16 +11,27 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Missing url or password" }, { status: 400 })
     }
 
+    let infoError: string | null = null
+    let statsError: string | null = null
+
     try {
         const [infoRes, statsRes] = await Promise.all([
             fetch(`${url}/v4/info`, {
                 headers: { Authorization: password },
                 signal: AbortSignal.timeout(5000), // 5 second timeout
-            }).catch(() => null),
+            }).catch((e) => {
+                console.error(`[API/NodeLink] Info fetch failed for ${url}:`, e.message)
+                infoError = e.message
+                return null
+            }),
             fetch(`${url}/v4/stats`, {
                 headers: { Authorization: password },
                 signal: AbortSignal.timeout(5000),
-            }).catch(() => null),
+            }).catch((e) => {
+                console.error(`[API/NodeLink] Stats fetch failed for ${url}:`, e.message)
+                statsError = e.message
+                return null
+            }),
         ])
 
         let info = null
@@ -30,23 +41,44 @@ export async function GET(request: Request) {
             try {
                 const text = await infoRes.text()
                 info = text ? JSON.parse(text) : null
-            } catch {
+            } catch (e) {
+                console.error(`[API/NodeLink] Info JSON parse error for ${url}:`, e)
                 info = null
+                infoError = "Invalid JSON response"
             }
+        } else if (infoRes) {
+            // Handle 4xx/5xx responses that aren't network errors
+            infoError = `HTTP ${infoRes.status} ${infoRes.statusText}`
         }
 
         if (statsRes?.ok) {
             try {
                 const text = await statsRes.text()
                 stats = text ? JSON.parse(text) : null
-            } catch {
+            } catch (e) {
+                console.error(`[API/NodeLink] Stats JSON parse error for ${url}:`, e)
                 stats = null
+                statsError = "Invalid JSON response"
             }
+        } else if (statsRes) {
+            statsError = `HTTP ${statsRes.status} ${statsRes.statusText}`
         }
 
-        return NextResponse.json({ info, stats })
-    } catch (error) {
+        return NextResponse.json({
+            info,
+            stats,
+            debug: {
+                infoError,
+                statsError,
+                url
+            }
+        })
+    } catch (error: any) {
         console.error("Proxy fetch error:", error)
-        return NextResponse.json({ info: null, stats: null })
+        return NextResponse.json({
+            info: null,
+            stats: null,
+            error: error.message
+        })
     }
 }
