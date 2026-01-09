@@ -42,28 +42,28 @@ Replace `<NODE_HOST>` with the hostname of the Lavalink node you want to display
 ### Example
 
 ```
-http://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app
+https://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app
 ```
 
 Embed the widget in Markdown as shown below:
 
 ```markdown
-![Node Widget](http://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app)
+![Node Widget](https://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app)
 ```
 
-![Node Widget](http://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app)
+![Node Widget](https://free-nodelink.nyxbot.app/api/nodes/widget?host=sg1-nodelink.nyxbot.app)
 
 A general widget showing the overall status of the public node list is also available:
 
 ```markdown
-![Widget](http://free-nodelink.nyxbot.app/api/nodes/widget)
+![Widget](https://free-nodelink.nyxbot.app/api/nodes/widget)
 ```
 
-![Widget](http://free-nodelink.nyxbot.app/api/nodes/widget)
+![Widget](https://free-nodelink.nyxbot.app/api/nodes/widget)
 
 To view the complete and up-to-date list of available nodes, visit:
 
-[Free NodeLink](http://free-nodelink.nyxbot.app)
+[Free NodeLink](https://free-nodelink.nyxbot.app)
 
 ---
 
@@ -81,7 +81,7 @@ Simply provide your node configuration using query parameters:
 ### Custom Widget Example
 
 ```markdown
-![My Custom Node](http://free-nodelink.nyxbot.app/api/nodes/widget?host=my-cool-node.com&port=443&secure=true&password=mypassword)
+![My Custom Node](https://free-nodelink.nyxbot.app/api/nodes/widget?host=my-cool-node.com&port=443&secure=true&password=mypassword)
 ```
 
 ---
