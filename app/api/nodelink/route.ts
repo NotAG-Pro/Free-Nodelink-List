@@ -17,7 +17,13 @@ export async function GET(request: Request) {
     try {
         const [infoRes, statsRes] = await Promise.all([
             fetch(`${url}/v4/info`, {
-                headers: { Authorization: password },
+                headers: {
+                    Authorization: password,
+                    "User-Agent": "Free-Nodelink: (By Nyxbot.app)",
+                    "Content-Type": "application/json",
+                    "Accept": "*/*",
+                    "Accept-Language": "*"
+                },
                 signal: AbortSignal.timeout(5000), // 5 second timeout
             }).catch((e) => {
                 console.error(`[API/NodeLink] Info fetch failed for ${url}:`, e.message)
@@ -25,7 +31,13 @@ export async function GET(request: Request) {
                 return null
             }),
             fetch(`${url}/v4/stats`, {
-                headers: { Authorization: password },
+                headers: {
+                    Authorization: password,
+                    "User-Agent": "Free-Nodelink: (By Nyxbot.app)",
+                    "Content-Type": "application/json",
+                    "Accept": "*/*",
+                    "Accept-Language": "*"
+                },
                 signal: AbortSignal.timeout(5000),
             }).catch((e) => {
                 console.error(`[API/NodeLink] Stats fetch failed for ${url}:`, e.message)

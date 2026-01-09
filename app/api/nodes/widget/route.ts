@@ -23,7 +23,13 @@ async function getNodes() {
 async function getLiveStats(url: string, password: string) {
     try {
         const statsRes = await fetch(`${url}/v4/stats`, {
-            headers: { Authorization: password },
+            headers: {
+                Authorization: password,
+                "User-Agent": "Free-Nodelink: (By Nyxbot.app)",
+                "Content-Type": "application/json",
+                "Accept": "*/*",
+                "Accept-Language": "*"
+            },
             signal: AbortSignal.timeout(3000), // 3s timeout for widget
         })
         if (!statsRes.ok) return null
