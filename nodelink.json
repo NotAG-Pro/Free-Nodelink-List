@@ -47,7 +47,10 @@
         "port": "443",
         "password": "free",
         "secure": true,
-        "sslHost": null,
+        "sslHost": {
+            "host": "nodelink.triniumhost.com",
+            "port": 443
+        },
         "author": {
             "name": "TriniumHost",
             "website": "https://triniumhost.com"
@@ -59,7 +62,10 @@
         "port": "443",
         "password": "trinium",
         "secure": true,
-        "sslHost": null,
+        "sslHost": {
+            "host": "nodelink-02.triniumhost.com",
+            "port": 443
+        },
         "author": {
             "name": "TriniumHost",
             "website": "https://triniumhost.com"
