@@ -40,5 +40,29 @@
             "name": "NYX Project",
             "website": "https://nyxbot.app"
         }
+    },
+    {
+        "title": "TriniumHost BR 01",
+        "host": "nodelink.triniumhost.com",
+        "port": "443",
+        "password": "free",
+        "secure": true,
+        "sslHost": null,
+        "author": {
+            "name": "TriniumHost",
+            "website": "https://triniumhost.com"
+        }
+    },
+    {
+        "title": "TriniumHost BR 02",
+        "host": "nodelink-02.triniumhost.com",
+        "port": "443",
+        "password": "trinium",
+        "secure": true,
+        "sslHost": null,
+        "author": {
+            "name": "TriniumHost",
+            "website": "https://triniumhost.com"
+        }
     }
 ]
